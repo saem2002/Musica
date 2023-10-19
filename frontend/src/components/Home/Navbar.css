@@ -1,0 +1,11 @@
+
+.Navbar_form_addsong {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f0;
+    width: 40vw;
+
+}
