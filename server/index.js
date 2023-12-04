@@ -24,4 +24,4 @@ app.use("/api/", searchRoutes);
 
 
 const port = process.env.PORT||3050
-app.listen(port, console.log(`In ascolto sulla porta ${port}`))
+app.listen(port, console.log(`connected port ${port}`))

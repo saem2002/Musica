@@ -10,7 +10,7 @@ router.post("/", async(req,res) => {
 
     const artist = await Artist.findOne({email: req.body.email});
     if(artist)
-        return res.status(403).send({message: "Esiste già un'artista con questa mail!"})
+        return res.status(403).send({message: "Already existed account"})
     let newArtist = await new Artist({
         ...req.body
     }).save();
@@ -18,13 +18,13 @@ router.post("/", async(req,res) => {
     newArtist.password = undefined;
     newArtist.__v = undefined;
 
-    res.status(200).send({data: newArtist, message: "Account artista creato con successo"})
+    res.status(200).send({data: newArtist, message: "Account created successfully"})
 });
 
 router.post("/login",async(req,res) => {
     const user = await Artist.findOne({email: req.body.email,password:req.body.password});
     if (!user)
-        return res.status(400).send({message: "Email o password non validi"});
+        return res.status(400).send({message: "Email or password non valid"});
     const token = user.generateAuthToken();
     res.status(200).send({data: token, message: "Accesso in corso..."});
 });
@@ -34,7 +34,7 @@ router.post("/search", async(req,res) => {
         
         const user = await Artist.findOne({_id: req.body._id});
         if(user){
-            res.status(200).send({data: user, message: "Account creato con successo"})
+            res.status(200).send({data: user, message: "Account created successfully"})
         }else{
             throw error
         }     
@@ -64,13 +64,13 @@ router.put("/:id", [validObjectId, auth], async(req,res) => {
         {$set: req.body},
         {new: true}
     ).select("password-__v");
-    res.status(200).send({data: artist, message: "Artista modificato con successo"})
+    res.status(200).send({data: artist, message: "success"})
 });
 
 //delete artist by id
 router.delete("/:id",  async(req,res) => {
     await Artist.findByIdAndDelete(req.params.id);
-    res.status(200).send({message: "Artista eliminato con successo"})
+    res.status(200).send({message: "success"})
 });
 
 module.exports = router;
