@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt from 'jwt-decode'
 //export const url = 'http://localhost:3050'
- export const url ='https://musicabackend.onrender.com'
+ export const url ='https://musicaBackend.onrender.com'
 
 
 
